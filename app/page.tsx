@@ -64,20 +64,17 @@ export default function WeddingInvitation() {
     return () => clearInterval(timer)
   }, [])
 
-  // Start auto-scroll when the page loads
-  useEffect(() => {
-    setIsAutoScrolling(true)
-  }, [])
-
-  // Music on first tap / click outside the music button (browser autoplay policy)
+  // Auto-scroll + music after first tap on the page (not on the music button)
   useEffect(() => {
     const onPointerDown = async (e: PointerEvent) => {
       const target = e.target
       if (!(target instanceof Element)) return
       if (target.closest("[data-music-control]")) return
-      if (isPlayingRef.current) return
-      const ok = await tryPlayMusic()
-      if (ok) setIsPlaying(true)
+      setIsAutoScrolling(true)
+      if (!isPlayingRef.current) {
+        const ok = await tryPlayMusic()
+        if (ok) setIsPlaying(true)
+      }
     }
     window.addEventListener("pointerdown", onPointerDown, true)
     return () => window.removeEventListener("pointerdown", onPointerDown, true)
@@ -140,8 +137,8 @@ export default function WeddingInvitation() {
       const ok = await tryPlayMusic()
       if (ok) {
         setIsPlaying(true)
-        setIsAutoScrolling(true)
       }
+      setIsAutoScrolling(true)
     }
   }
 
