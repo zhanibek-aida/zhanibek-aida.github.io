@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef } from "react"
 
-// Wedding date - 18 July 2026, 18:00
-const WEDDING_DATE = new Date("2026-07-18T18:00:00")
+// Wedding date - 18 July 2026, 14:00
+const WEDDING_DATE = new Date("2026-07-18T14:00:00")
 
 // Google Apps Script URL for form submission
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbygonOMR8ADXKbePYDD8Oy00etV3Sx8kl4bXBu58yUPmtfOvHw79e4lPZqWQw8n5O5kPw/exec"
@@ -336,7 +336,7 @@ export default function WeddingInvitation() {
             </svg>
           </div>
 
-          <p className="text-lg md:text-xl text-[#5a5a5a]">Сағат 18:00-де басталады</p>
+          <p className="text-lg md:text-xl text-[#5a5a5a]">Сағат 14:00-де басталады</p>
         </div>
       </section>
 
