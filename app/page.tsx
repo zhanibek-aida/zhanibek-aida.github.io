@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 
 // Wedding date - 18 July 2026, 14:00
 const WEDDING_DATE = new Date("2026-07-18T14:00:00")
@@ -35,6 +35,22 @@ export default function WeddingInvitation() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
   const autoScrollRef = useRef<number | null>(null)
+  const isPlayingRef = useRef(false)
+
+  useEffect(() => {
+    isPlayingRef.current = isPlaying
+  }, [isPlaying])
+
+  const tryPlayMusic = useCallback(async (): Promise<boolean> => {
+    const audio = audioRef.current
+    if (!audio) return false
+    try {
+      await audio.play()
+      return true
+    } catch {
+      return false
+    }
+  }, [])
 
   // Fix hydration mismatch - only calculate time on client
   useEffect(() => {
@@ -48,14 +64,36 @@ export default function WeddingInvitation() {
     return () => clearInterval(timer)
   }, [])
 
-  // Auto-scroll effect
+  // Start auto-scroll when the page loads
+  useEffect(() => {
+    setIsAutoScrolling(true)
+  }, [])
+
+  // Music on first tap / click outside the music button (browser autoplay policy)
+  useEffect(() => {
+    const onPointerDown = async (e: PointerEvent) => {
+      const target = e.target
+      if (!(target instanceof Element)) return
+      if (target.closest("[data-music-control]")) return
+      if (isPlayingRef.current) return
+      const ok = await tryPlayMusic()
+      if (ok) setIsPlaying(true)
+    }
+    window.addEventListener("pointerdown", onPointerDown, true)
+    return () => window.removeEventListener("pointerdown", onPointerDown, true)
+  }, [tryPlayMusic])
+
+  // Auto-scroll effect (half speed: 1 px every 2 frames)
   useEffect(() => {
     if (isAutoScrolling) {
-      const scrollSpeed = 1 // pixels per frame
+      let frameCount = 0
       const scroll = () => {
         const maxScroll = document.documentElement.scrollHeight - window.innerHeight
         if (window.scrollY < maxScroll) {
-          window.scrollBy(0, scrollSpeed)
+          frameCount++
+          if (frameCount % 2 === 0) {
+            window.scrollBy(0, 1)
+          }
           autoScrollRef.current = requestAnimationFrame(scroll)
         } else {
           setIsAutoScrolling(false)
@@ -93,20 +131,16 @@ export default function WeddingInvitation() {
   }, [isAutoScrolling])
 
   const toggleMusic = async () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause()
-        setIsPlaying(false)
-        setIsAutoScrolling(false)
-      } else {
-        try {
-          await audioRef.current.play()
-          setIsPlaying(true)
-          setIsAutoScrolling(true)
-        } catch (error) {
-          // Handle the case where play() was interrupted
-          console.log("Playback was interrupted or failed to start")
-        }
+    if (!audioRef.current) return
+    if (isPlaying) {
+      audioRef.current.pause()
+      setIsPlaying(false)
+      setIsAutoScrolling(false)
+    } else {
+      const ok = await tryPlayMusic()
+      if (ok) {
+        setIsPlaying(true)
+        setIsAutoScrolling(true)
       }
     }
   }
@@ -154,7 +188,7 @@ export default function WeddingInvitation() {
   return (
     <div className="min-h-screen bg-[#f5f5f0] font-serif">
       {/* Audio element - replace src with your music file */}
-      <audio ref={audioRef} loop>
+      <audio ref={audioRef} loop preload="auto">
         <source src={`${PUBLIC_BASE}/wedding-music.mp3`} type="audio/mpeg" />
       </audio>
 
@@ -190,6 +224,8 @@ export default function WeddingInvitation() {
 
             {/* Play/Pause Button with circular text */}
             <button
+              type="button"
+              data-music-control
               onClick={toggleMusic}
               className="relative w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-[#4a4a4a] flex items-center justify-center bg-white/80 hover:bg-white transition-colors"
             >
