@@ -28,8 +28,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/og-image.png',
-        width: 413,
-        height: 243,
+        width: 1024,
+        height: 540,
         alt: 'Жанибек & Аида',
       },
     ],
