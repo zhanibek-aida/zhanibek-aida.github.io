@@ -6,10 +6,10 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 const p = process.env.NEXT_PUBLIC_BASE_PATH || ''
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(
-  /\/$/,
-  ''
-)
+// Абсолютный URL обязателен для og:image. localhost ломает превью в мессенджерах.
+const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://zhanibek-aida.github.io'
+).replace(/\/$/, '')
 
 export const metadata: Metadata = {
   metadataBase: new URL(`${siteUrl}${p}`),
