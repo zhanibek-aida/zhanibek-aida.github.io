@@ -7,6 +7,8 @@ const nextConfig = {
   output: 'export',
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
+    // Для Open Graph при сборке на CI (см. workflow «Set public site URL»)
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || '',
   },
   ...(basePath ? { basePath } : {}),
   typescript: {

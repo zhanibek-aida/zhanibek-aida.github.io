@@ -36,6 +36,16 @@ jobs:
             echo "BASE_PATH=/$REPO" >> "$GITHUB_ENV"
           fi
 
+      - name: Set public site URL for Open Graph previews
+        run: |
+          REPO="${{ github.event.repository.name }}"
+          OWNER="${{ github.repository_owner }}"
+          if [ "$REPO" = "${OWNER}.github.io" ]; then
+            echo "NEXT_PUBLIC_SITE_URL=https://${OWNER}.github.io" >> "$GITHUB_ENV"
+          else
+            echo "NEXT_PUBLIC_SITE_URL=https://${OWNER}.github.io/${REPO}" >> "$GITHUB_ENV"
+          fi
+
       - run: npm ci
       - run: npm run build
 
