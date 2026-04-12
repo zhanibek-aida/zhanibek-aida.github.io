@@ -309,7 +309,7 @@ export default function WeddingInvitation() {
 
       {/* Calendar Section */}
       <section className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
-        <SectionOrnament className="mb-6" />
+        <SectionOrnament variant="1" className="mb-6" />
 
         <div className="max-w-sm mx-auto text-center">
           <h2 className="text-2xl md:text-3xl text-[#5a5a5a] mb-6">Той салтанаты:</h2>
@@ -383,7 +383,7 @@ export default function WeddingInvitation() {
 
       {/* Toastmaster Section */}
       <section className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
-        <SectionOrnament className="mb-6" />
+        <SectionOrnament variant="2" className="mb-6" />
 
         <div className="max-w-sm mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-script text-[#6b5a3e] mb-6">Той иелері:</h2>
@@ -489,7 +489,7 @@ export default function WeddingInvitation() {
 
       {/* Footer: тот же орнамент, перевёрнутый */}
       <section className="py-8 bg-[#f5f5f0]">
-        <SectionOrnament flipped />
+        <SectionOrnament variant="1" flipped />
       </section>
 
       <style jsx global>{`
