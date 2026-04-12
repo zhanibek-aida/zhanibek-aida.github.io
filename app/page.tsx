@@ -327,8 +327,8 @@ export default function WeddingInvitation() {
           </motion.div>
           <motion.h2
             className="text-3xl md:text-5xl font-names text-[#2a2a2a]"
-            initial={{ opacity: 0, letterSpacing: "0.02em" }}
-            animate={{ opacity: 1, letterSpacing: "0.14em" }}
+            initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={transition}
           >
             Жанибек & Аида
@@ -353,12 +353,11 @@ export default function WeddingInvitation() {
       {/* Wedding Couple Section */}
       <ScrollRevealSection className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
         <div className="max-w-md mx-auto text-center">
-          <p className="text-[#5a5a5a] text-lg md:text-xl mb-2">Сіздерді</p>
-          <p className="text-[#5a5a5a] text-lg md:text-xl mb-4">ұлымыз бен келініміз</p>
+          <p className="text-[#5a5a5a] text-lg md:text-xl mb-4">Сіздерді балаларымыз</p>
 
-          <h3 className="text-3xl md:text-4xl font-names text-[#6b5a3e] mb-2">Жанибек</h3>
-          <p className="text-[#5a5a5a] text-lg mb-2">пен</p>
-          <h3 className="text-3xl md:text-4xl font-names text-[#6b5a3e] mb-6">Аида</h3>
+          <h3 className="text-3xl md:text-4xl font-couple-names text-[#6b5a3e] mb-2">Жанибек</h3>
+          <p className="text-[#5a5a5a] text-lg md:text-xl mb-2">пен</p>
+          <h3 className="text-3xl md:text-4xl font-couple-names text-[#6b5a3e] mb-6">Аиданың</h3>
 
           <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed">
             үйлену тойына арналған
@@ -583,13 +582,22 @@ export default function WeddingInvitation() {
         </div>
       </ScrollRevealSection>
 
+      {/* Заключительная фраза */}
+      <ScrollRevealSection className="border-t border-[#d4d4d4] bg-[#f5f5f0] py-14 px-6">
+        <div className="mx-auto max-w-xl text-center">
+          <p className="text-balance font-couple-names text-2xl leading-snug text-[#6b5a3e] md:text-3xl md:leading-normal">
+            Келіңіздер, тойымыздың қадірлі қонағы болыңыздар!
+          </p>
+        </div>
+      </ScrollRevealSection>
+
       {/* Footer: тот же орнамент, перевёрнутый */}
       <ScrollRevealSection className="py-8 bg-[#f5f5f0]">
         <SectionOrnament variant="1" flipped />
       </ScrollRevealSection>
 
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&family=Tangerine:wght@400;700&family=Marck+Script&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Tangerine:wght@400;700&family=Marck+Script&display=swap');
 
         .font-script {
           font-family: 'Great Vibes', cursive;
@@ -597,6 +605,12 @@ export default function WeddingInvitation() {
 
         .font-names {
           font-family: 'Marck Script', cursive;
+        }
+
+        .font-couple-names {
+          font-family: 'Cormorant', serif;
+          font-style: italic;
+          font-weight: 500;
         }
 
         body {
