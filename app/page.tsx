@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useEffect, useRef, useCallback } from "react"
+import { useState, useEffect, useRef, useCallback, type ReactNode } from "react"
+import { motion } from "framer-motion"
 import { SectionOrnament } from "@/components/SectionOrnament"
 
 // Wedding date - 18 July 2026, 14:00
@@ -10,6 +11,47 @@ const WEDDING_DATE = new Date("2026-07-18T14:00:00")
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbygonOMR8ADXKbePYDD8Oy00etV3Sx8kl4bXBu58yUPmtfOvHw79e4lPZqWQw8n5O5kPw/exec"
 
 const PUBLIC_BASE = process.env.NEXT_PUBLIC_BASE_PATH || ""
+
+const transition = { duration: 0.8, ease: "easeOut" as const }
+
+const staggerContainer = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
+    },
+  },
+}
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 16 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition,
+  },
+}
+
+function ScrollRevealSection({
+  children,
+  className,
+}: {
+  children: ReactNode
+  className?: string
+}) {
+  return (
+    <motion.section
+      className={className}
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={transition}
+    >
+      {children}
+    </motion.section>
+  )
+}
 
 const calculateTimeLeft = () => {
   const now = new Date()
@@ -57,7 +99,7 @@ export default function WeddingInvitation() {
   useEffect(() => {
     setIsMounted(true)
     setTimeLeft(calculateTimeLeft())
-    
+
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft())
     }, 1000)
@@ -119,12 +161,12 @@ export default function WeddingInvitation() {
       }
     }
 
-    window.addEventListener('wheel', stopAutoScroll)
-    window.addEventListener('touchmove', stopAutoScroll)
+    window.addEventListener("wheel", stopAutoScroll)
+    window.addEventListener("touchmove", stopAutoScroll)
 
     return () => {
-      window.removeEventListener('wheel', stopAutoScroll)
-      window.removeEventListener('touchmove', stopAutoScroll)
+      window.removeEventListener("wheel", stopAutoScroll)
+      window.removeEventListener("touchmove", stopAutoScroll)
     }
   }, [isAutoScrolling])
 
@@ -148,8 +190,8 @@ export default function WeddingInvitation() {
     setIsSubmitting(true)
 
     try {
-      const attendanceText = formData.attendance === "yes" 
-        ? "Иә, келемін" 
+      const attendanceText = formData.attendance === "yes"
+        ? "Иә, келемін"
         : "Жоқ, өкінішке орай келе алмаймын"
 
       await fetch(GOOGLE_SCRIPT_URL, {
@@ -191,7 +233,13 @@ export default function WeddingInvitation() {
       </audio>
 
       {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex flex-col items-center justify-between py-8">
+      <motion.section
+        className="relative min-h-[85vh] flex flex-col items-center justify-between py-8"
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={transition}
+      >
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -210,7 +258,15 @@ export default function WeddingInvitation() {
           {/* Music Controls */}
           <div className="flex items-center gap-4">
             {/* Music Note Icon */}
-            <div className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-[#4a4a4a] flex items-center justify-center bg-white/80">
+            <motion.div
+              className="w-14 h-14 md:w-16 md:h-16 rounded-full border-2 border-[#4a4a4a] flex items-center justify-center bg-white/80"
+              animate={{ y: [0, -4, 0] }}
+              transition={{
+                duration: 4.5,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              }}
+            >
               <svg
                 className="w-7 h-7 md:w-8 md:h-8 text-[#4a4a4a]"
                 fill="currentColor"
@@ -218,14 +274,16 @@ export default function WeddingInvitation() {
               >
                 <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
               </svg>
-            </div>
+            </motion.div>
 
             {/* Play/Pause Button with circular text */}
-            <button
+            <motion.button
               type="button"
               data-music-control
               onClick={toggleMusic}
               className="relative w-20 h-20 md:w-24 md:h-24 rounded-full border-2 border-[#4a4a4a] flex items-center justify-center bg-white/80 hover:bg-white transition-colors"
+              whileHover={{ y: -4, transition }}
+              whileTap={{ scale: 0.98 }}
             >
               {/* Circular Text */}
               <svg className="absolute w-full h-full animate-spin-slow" viewBox="0 0 100 100">
@@ -251,25 +309,35 @@ export default function WeddingInvitation() {
                   <path d="M8 5v14l11-7z" />
                 </svg>
               )}
-            </button>
+            </motion.button>
           </div>
         </div>
 
         {/* Names at bottom of hero */}
-        <div className="relative z-10 text-center">
-          <div className="flex items-center justify-center gap-4 md:gap-8 mb-4">
+        <div className="relative z-10 text-center px-4">
+          <motion.div
+            className="flex items-center justify-center gap-4 md:gap-8 mb-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ ...transition, delay: 0.15 }}
+          >
             <span className="text-6xl md:text-8xl font-names text-[#2a2a2a]">Ж</span>
             <span className="text-4xl md:text-6xl text-[#4a4a4a]">|</span>
             <span className="text-6xl md:text-8xl font-names text-[#2a2a2a]">А</span>
-          </div>
-          <h2 className="text-3xl md:text-5xl font-names text-[#2a2a2a]">
+          </motion.div>
+          <motion.h2
+            className="text-3xl md:text-5xl font-names text-[#2a2a2a]"
+            initial={{ opacity: 0, letterSpacing: "0.02em" }}
+            animate={{ opacity: 1, letterSpacing: "0.14em" }}
+            transition={transition}
+          >
             Жанибек & Аида
-          </h2>
+          </motion.h2>
         </div>
-      </section>
+      </motion.section>
 
       {/* Invitation Text Section */}
-      <section className="py-10 px-4 bg-[#f5f5f0]">
+      <ScrollRevealSection className="py-10 px-4 bg-[#f5f5f0]">
         <div className="max-w-md mx-auto text-center">
           <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed mb-2">Құрметті</p>
           <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed">Ағайын-туыс,бауырлар,</p>
@@ -280,18 +348,18 @@ export default function WeddingInvitation() {
           <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed">құрбы-құрдас,көршілер,</p>
           <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed">әріптестер!</p>
         </div>
-      </section>
+      </ScrollRevealSection>
 
       {/* Wedding Couple Section */}
-      <section className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
+      <ScrollRevealSection className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
         <div className="max-w-md mx-auto text-center">
           <p className="text-[#5a5a5a] text-lg md:text-xl mb-2">Сіздерді</p>
           <p className="text-[#5a5a5a] text-lg md:text-xl mb-4">ұлымыз бен келініміз</p>
-          
+
           <h3 className="text-3xl md:text-4xl font-names text-[#6b5a3e] mb-2">Жанибек</h3>
           <p className="text-[#5a5a5a] text-lg mb-2">пен</p>
           <h3 className="text-3xl md:text-4xl font-names text-[#6b5a3e] mb-6">Аида</h3>
-          
+
           <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed">
             үйлену тойына арналған
           </p>
@@ -305,22 +373,35 @@ export default function WeddingInvitation() {
             қонағы болуға шақырамыз!
           </p>
         </div>
-      </section>
+      </ScrollRevealSection>
 
-      {/* Calendar Section */}
-      <section className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
-        <SectionOrnament variant="1" className="mb-6" />
+      {/* Calendar / Timeline Section */}
+      <ScrollRevealSection className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="max-w-sm mx-auto text-center"
+        >
+          <motion.div variants={staggerItem}>
+            <SectionOrnament variant="1" className="mb-6" />
+          </motion.div>
 
-        <div className="max-w-sm mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl text-[#5a5a5a] mb-6">Той салтанаты:</h2>
-          
-          <p className="text-xl md:text-2xl font-script text-[#6b5a3e] mb-6 underline decoration-[#6b5a3e]">
+          <motion.h2 variants={staggerItem} className="text-2xl md:text-3xl text-[#5a5a5a] mb-6">
+            Той салтанаты:
+          </motion.h2>
+
+          <motion.p
+            variants={staggerItem}
+            className="text-xl md:text-2xl font-script text-[#6b5a3e] mb-6 underline decoration-[#6b5a3e]"
+          >
             18 шілде 2026 жыл
-          </p>
+          </motion.p>
 
-          {/* Calendar Grid */}
+          {/* Calendar Grid — әр апта бөлек stagger */}
           <div className="mb-6">
-            <div className="grid grid-cols-7 gap-2 md:gap-3 text-[#5a5a5a] mb-2">
+            <motion.div variants={staggerItem} className="grid grid-cols-7 gap-2 md:gap-3 text-[#5a5a5a] mb-2">
               <span className="text-sm md:text-base">дс</span>
               <span className="text-sm md:text-base">сс</span>
               <span className="text-sm md:text-base">ср</span>
@@ -328,9 +409,13 @@ export default function WeddingInvitation() {
               <span className="text-sm md:text-base">жм</span>
               <span className="text-sm md:text-base">сб</span>
               <span className="text-sm md:text-base">вс</span>
-            </div>
+            </motion.div>
             {calendarDays.map((week, weekIndex) => (
-              <div key={weekIndex} className="grid grid-cols-7 gap-2 md:gap-3 text-[#5a5a5a]">
+              <motion.div
+                key={weekIndex}
+                variants={staggerItem}
+                className="grid grid-cols-7 gap-2 md:gap-3 text-[#5a5a5a]"
+              >
                 {week.map((day, dayIndex) => (
                   <span
                     key={dayIndex}
@@ -343,59 +428,63 @@ export default function WeddingInvitation() {
                     {day || ""}
                   </span>
                 ))}
-              </div>
+              </motion.div>
             ))}
           </div>
 
           {/* Wedding Rings Icon */}
-          <div className="flex justify-center mb-4">
+          <motion.div variants={staggerItem} className="flex justify-center mb-4">
             <svg className="w-12 h-12 text-[#c5b698]" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="18" cy="24" r="10" />
               <circle cx="30" cy="24" r="10" />
             </svg>
-          </div>
+          </motion.div>
 
-          <p className="text-lg md:text-xl text-[#5a5a5a]">Сағат 14:00-де басталады</p>
-        </div>
-      </section>
+          <motion.p variants={staggerItem} className="text-lg md:text-xl text-[#5a5a5a]">
+            Сағат 14:00-де басталады
+          </motion.p>
+        </motion.div>
+      </ScrollRevealSection>
 
       {/* Venue Section */}
-      <section className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
+      <ScrollRevealSection className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
         <div className="max-w-sm mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-script text-[#6b5a3e] mb-6">Мекен-жайымыз:</h2>
-          
+
           <div className="border border-[#d4d4d4] rounded-lg p-6 mb-6">
             <p className="text-[#5a5a5a] text-lg mb-4">Кішкенекөл ауылы</p>
-            <p className="text-2xl md:text-3xl font-script text-[#6b5a3e] mb-2">{'"'} Гаухартас {'"'}</p>
+            <p className="text-2xl md:text-3xl font-script text-[#6b5a3e] mb-2">{'"'}{" "}Гаухартас{" "}{'"'}</p>
             <p className="text-[#5a5a5a] text-lg">мейрамханасы</p>
           </div>
 
-          <a
+          <motion.a
             href="https://maps.app.goo.gl/FceHneyyBDBpAeCJA"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-[#5a5040] text-white px-8 py-3 rounded-full text-lg hover:bg-[#4a4030] transition-colors font-script"
+            whileHover={{ y: -4, transition }}
+            whileTap={{ scale: 0.98 }}
           >
             Картаны ашу
-          </a>
+          </motion.a>
         </div>
-      </section>
+      </ScrollRevealSection>
 
       {/* Toastmaster Section */}
-      <section className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
+      <ScrollRevealSection className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
         <SectionOrnament variant="2" className="mb-6" />
 
         <div className="max-w-sm mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-script text-[#6b5a3e] mb-6">Той иелері:</h2>
           <p className="text-xl md:text-2xl text-[#5a5a5a]">Сабыржан-Шолпан</p>
         </div>
-      </section>
+      </ScrollRevealSection>
 
       {/* Countdown Section */}
-      <section className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
+      <ScrollRevealSection className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
         <div className="max-w-md mx-auto text-center">
           <h2 className="text-2xl md:text-3xl text-[#5a5a5a] mb-6">Той салтанатына дейін:</h2>
-          
+
           <div className="flex justify-center items-center gap-2 md:gap-4 mb-8">
             <div className="text-center">
               <span className="text-4xl md:text-6xl font-light text-[#4a4a4a]">{isMounted ? timeLeft.days : "-"}</span>
@@ -418,10 +507,10 @@ export default function WeddingInvitation() {
             </div>
           </div>
         </div>
-      </section>
+      </ScrollRevealSection>
 
       {/* RSVP Section */}
-      <section className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
+      <ScrollRevealSection className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
         <div className="max-w-md mx-auto">
           <h2 className="text-xl md:text-2xl text-[#5a5a5a] text-center mb-2">Тойға келуіңізді</h2>
           <h2 className="text-xl md:text-2xl text-[#5a5a5a] text-center mb-8">растауыңызды сұраймыз</h2>
@@ -431,70 +520,77 @@ export default function WeddingInvitation() {
               <p className="text-xl text-[#6b5a3e]">Рахмет! Сіздің жауабыңыз қабылданды.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className="block text-[#5a5a5a] text-sm mb-2">
-                  Аты-жөніңіз (жұбайыңызбен бірге келетін болсаңыз екі есімді де көрсетуіңізді сұраймыз)
-                </label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full border border-[#d4d4d4] rounded-md px-4 py-3 text-[#4a4a4a] focus:outline-none focus:border-[#6b5a3e]"
-                  required
-                />
-              </div>
-
-              <div>
-                <p className="text-[#5a5a5a] text-sm mb-3">Тойға келесіз бе?</p>
-                <div className="space-y-3">
-                  <label className="flex items-center gap-3 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="attendance"
-                      value="yes"
-                      checked={formData.attendance === "yes"}
-                      onChange={(e) => setFormData({ ...formData, attendance: e.target.value })}
-                      className="w-5 h-5 text-[#6b5a3e] border-[#d4d4d4] focus:ring-[#6b5a3e]"
-                    />
-                    <span className="text-[#6b5a3e]">Иә, келемін</span>
+            <motion.div
+              className="rounded-2xl border border-[#e4e0d8] bg-[#fafaf6] p-6 shadow-sm md:p-8"
+              whileHover={{ y: -4, transition }}
+            >
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label className="block text-[#5a5a5a] text-sm mb-2">
+                    Аты-жөніңіз (жұбайыңызбен бірге келетін болсаңыз екі есімді де көрсетуіңізді сұраймыз)
                   </label>
-                  <label className="flex items-center gap-3 cursor-pointer">
-                    <input
-                      type="radio"
-                      name="attendance"
-                      value="no"
-                      checked={formData.attendance === "no"}
-                      onChange={(e) => setFormData({ ...formData, attendance: e.target.value })}
-                      className="w-5 h-5 text-[#6b5a3e] border-[#d4d4d4] focus:ring-[#6b5a3e]"
-                    />
-                    <span className="text-[#6b5a3e]">Жоқ, өкінішке орай келе алмаймын</span>
-                  </label>
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full border border-[#d4d4d4] rounded-md px-4 py-3 text-[#4a4a4a] focus:outline-none focus:border-[#6b5a3e]"
+                    required
+                  />
                 </div>
-              </div>
 
-              <div className="text-center pt-4">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="bg-[#5a5040] text-white px-12 py-3 rounded-md text-lg hover:bg-[#4a4030] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isSubmitting ? "Жіберілуде..." : "Жіберу"}
-                </button>
-              </div>
-            </form>
+                <div>
+                  <p className="text-[#5a5a5a] text-sm mb-3">Тойға келесіз бе?</p>
+                  <div className="space-y-3">
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="attendance"
+                        value="yes"
+                        checked={formData.attendance === "yes"}
+                        onChange={(e) => setFormData({ ...formData, attendance: e.target.value })}
+                        className="w-5 h-5 text-[#6b5a3e] border-[#d4d4d4] focus:ring-[#6b5a3e]"
+                      />
+                      <span className="text-[#6b5a3e]">Иә, келемін</span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="attendance"
+                        value="no"
+                        checked={formData.attendance === "no"}
+                        onChange={(e) => setFormData({ ...formData, attendance: e.target.value })}
+                        className="w-5 h-5 text-[#6b5a3e] border-[#d4d4d4] focus:ring-[#6b5a3e]"
+                      />
+                      <span className="text-[#6b5a3e]">Жоқ, өкінішке орай келе алмаймын</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div className="text-center pt-4">
+                  <motion.button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="bg-[#5a5040] text-white px-12 py-3 rounded-md text-lg hover:bg-[#4a4030] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    whileHover={!isSubmitting ? { y: -4, transition } : undefined}
+                    whileTap={!isSubmitting ? { scale: 0.98 } : undefined}
+                  >
+                    {isSubmitting ? "Жіберілуде..." : "Жіберу"}
+                  </motion.button>
+                </div>
+              </form>
+            </motion.div>
           )}
         </div>
-      </section>
+      </ScrollRevealSection>
 
       {/* Footer: тот же орнамент, перевёрнутый */}
-      <section className="py-8 bg-[#f5f5f0]">
+      <ScrollRevealSection className="py-8 bg-[#f5f5f0]">
         <SectionOrnament variant="1" flipped />
-      </section>
+      </ScrollRevealSection>
 
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&family=Tangerine:wght@400;700&family=Marck+Script&display=swap');
-        
+
         .font-script {
           font-family: 'Great Vibes', cursive;
         }
@@ -502,7 +598,7 @@ export default function WeddingInvitation() {
         .font-names {
           font-family: 'Marck Script', cursive;
         }
-        
+
         body {
           font-family: 'Cormorant Garamond', serif;
         }

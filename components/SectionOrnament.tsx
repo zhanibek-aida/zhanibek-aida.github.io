@@ -1,4 +1,5 @@
 import { Circle, Heart } from "lucide-react"
+import { motion } from "framer-motion"
 
 /**
  * Минималистичный разделитель: тонкие линии + символ (кольца / жүрек).
@@ -20,7 +21,15 @@ export function SectionOrnament({
       aria-hidden
     >
       <div className="h-px min-w-[2rem] flex-1 max-w-[12rem] bg-gradient-to-r from-transparent via-[#c4a574]/70 to-[#c4a574]/40" />
-      <div className="shrink-0">
+      <motion.div
+        className="shrink-0"
+        animate={{ y: [0, -5, 0] }}
+        transition={{
+          duration: 5,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "easeInOut",
+        }}
+      >
         {variant === "2" ? (
           <Heart
             className="h-8 w-8 text-[#8b9a7c] md:h-9 md:w-9"
@@ -39,7 +48,7 @@ export function SectionOrnament({
             />
           </div>
         )}
-      </div>
+      </motion.div>
       <div className="h-px min-w-[2rem] flex-1 max-w-[12rem] bg-gradient-to-l from-transparent via-[#c4a574]/70 to-[#c4a574]/40" />
     </div>
   )
