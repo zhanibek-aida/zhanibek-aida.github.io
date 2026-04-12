@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef, useCallback } from "react"
+import { SectionOrnament } from "@/components/SectionOrnament"
 
 // Wedding date - 18 July 2026, 14:00
 const WEDDING_DATE = new Date("2026-07-18T14:00:00")
@@ -308,22 +309,7 @@ export default function WeddingInvitation() {
 
       {/* Calendar Section */}
       <section className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
-        {/* Floral Decoration */}
-        <div className="flex justify-center mb-6">
-          <div className="w-40 md:w-56">
-            <svg viewBox="0 0 200 60" className="w-full">
-              <g>
-                <ellipse cx="100" cy="30" rx="20" ry="10" fill="#d4c5a9" />
-                <ellipse cx="80" cy="25" rx="15" ry="8" fill="#c5b698" />
-                <ellipse cx="120" cy="25" rx="15" ry="8" fill="#c5b698" />
-                <ellipse cx="60" cy="30" rx="12" ry="6" fill="#8b9a7c" />
-                <ellipse cx="140" cy="30" rx="12" ry="6" fill="#8b9a7c" />
-                <ellipse cx="45" cy="35" rx="10" ry="5" fill="#9aaa8c" />
-                <ellipse cx="155" cy="35" rx="10" ry="5" fill="#9aaa8c" />
-              </g>
-            </svg>
-          </div>
-        </div>
+        <SectionOrnament className="mb-6" />
 
         <div className="max-w-sm mx-auto text-center">
           <h2 className="text-2xl md:text-3xl text-[#5a5a5a] mb-6">Той салтанаты:</h2>
@@ -397,22 +383,7 @@ export default function WeddingInvitation() {
 
       {/* Toastmaster Section */}
       <section className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
-        {/* Floral Decoration */}
-        <div className="flex justify-center mb-6">
-          <div className="w-48 md:w-64">
-            <svg viewBox="0 0 200 60" className="w-full">
-              <g>
-                <ellipse cx="100" cy="30" rx="20" ry="10" fill="#d4c5a9" />
-                <ellipse cx="80" cy="25" rx="15" ry="8" fill="#c5b698" />
-                <ellipse cx="120" cy="25" rx="15" ry="8" fill="#c5b698" />
-                <ellipse cx="60" cy="30" rx="12" ry="6" fill="#8b9a7c" />
-                <ellipse cx="140" cy="30" rx="12" ry="6" fill="#8b9a7c" />
-                <ellipse cx="45" cy="35" rx="10" ry="5" fill="#9aaa8c" />
-                <ellipse cx="155" cy="35" rx="10" ry="5" fill="#9aaa8c" />
-              </g>
-            </svg>
-          </div>
-        </div>
+        <SectionOrnament className="mb-6" />
 
         <div className="max-w-sm mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-script text-[#6b5a3e] mb-6">Той иелері:</h2>
@@ -516,23 +487,9 @@ export default function WeddingInvitation() {
         </div>
       </section>
 
-      {/* Footer Floral */}
+      {/* Footer: тот же орнамент, перевёрнутый */}
       <section className="py-8 bg-[#f5f5f0]">
-        <div className="flex justify-center">
-          <div className="w-48 md:w-64 transform rotate-180">
-            <svg viewBox="0 0 200 60" className="w-full">
-              <g>
-                <ellipse cx="100" cy="30" rx="20" ry="10" fill="#d4c5a9" />
-                <ellipse cx="80" cy="25" rx="15" ry="8" fill="#c5b698" />
-                <ellipse cx="120" cy="25" rx="15" ry="8" fill="#c5b698" />
-                <ellipse cx="60" cy="30" rx="12" ry="6" fill="#8b9a7c" />
-                <ellipse cx="140" cy="30" rx="12" ry="6" fill="#8b9a7c" />
-                <ellipse cx="45" cy="35" rx="10" ry="5" fill="#9aaa8c" />
-                <ellipse cx="155" cy="35" rx="10" ry="5" fill="#9aaa8c" />
-              </g>
-            </svg>
-          </div>
-        </div>
+        <SectionOrnament flipped />
       </section>
 
       <style jsx global>{`
