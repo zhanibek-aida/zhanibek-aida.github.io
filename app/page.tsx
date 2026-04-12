@@ -237,7 +237,7 @@ export default function WeddingInvitation() {
 
       {/* Hero Section */}
       <motion.section
-        className="relative min-h-[85vh] flex flex-col items-center justify-between py-8"
+        className="relative min-h-[85vh] flex flex-col items-center justify-between pt-8 pb-5 md:pb-6"
         initial={{ opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -316,7 +316,7 @@ export default function WeddingInvitation() {
         </div>
 
         {/* Names at bottom of hero */}
-        <div className="relative z-10 text-center px-4">
+        <div className="relative z-10 text-center px-4 mb-10 md:mb-14">
           <motion.div
             className="flex items-center justify-center gap-4 md:gap-8 mb-4"
             initial={{ opacity: 0 }}
@@ -328,7 +328,7 @@ export default function WeddingInvitation() {
             <span className="text-6xl md:text-8xl font-names text-[#2a2a2a]">А</span>
           </motion.div>
           <motion.h2
-            className="text-4xl md:text-6xl font-names text-[#2a2a2a]"
+            className="text-4xl md:text-7xl font-names text-[#2a2a2a]"
             initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={transition}
@@ -339,7 +339,7 @@ export default function WeddingInvitation() {
       </motion.section>
 
       {/* Invitation Text Section */}
-      <ScrollRevealSection className="py-10 px-4 bg-[#f5f5f0]">
+      <ScrollRevealSection className="-mt-4 pt-6 pb-10 px-4 bg-[#f5f5f0] md:-mt-6 md:pt-8">
         <div className="max-w-md mx-auto text-center">
           <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed mb-2">Құрметті</p>
           <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed">Ағайын-туыс,бауырлар,</p>
