@@ -1,8 +1,8 @@
-/** Декоративный разделитель между секциями (SVG). */
+/** Декоративный разделитель между секциями. */
 export function SectionOrnament({
   flipped = false,
   className = "",
-  /** 1 — Untitled.svg (күнтізбе және футер), 2 — Untitled (1).svg (той иелері) */
+  /** 1 — күнтізбе және футер, 2 — той иелері */
   variant = "1",
 }: {
   flipped?: boolean
@@ -12,8 +12,8 @@ export function SectionOrnament({
   const base = process.env.NEXT_PUBLIC_BASE_PATH || ""
   const src =
     variant === "2"
-      ? `${base}/section-ornament-2.svg`
-      : `${base}/section-ornament-1.svg`
+      ? `${base}/section-ornament-2.png`
+      : `${base}/section-ornament-1.png`
 
   return (
     <div className={`flex justify-center ${className}`}>
