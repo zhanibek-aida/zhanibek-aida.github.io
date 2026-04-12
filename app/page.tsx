@@ -190,9 +190,12 @@ export default function WeddingInvitation() {
     setIsSubmitting(true)
 
     try {
-      const attendanceText = formData.attendance === "yes"
-        ? "Иә, келемін"
-        : "Жоқ, өкінішке орай келе алмаймын"
+      const attendanceLabels: Record<string, string> = {
+        yes_single: "Иә, қуана-қуана келемін",
+        yes_couple: "Жұбайыммен бірге келеміз",
+        no: "Өкінішке орай, келе алмаймын",
+      }
+      const attendanceText = attendanceLabels[formData.attendance] ?? ""
 
       await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
@@ -250,11 +253,10 @@ export default function WeddingInvitation() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#f5f5f0]/80 via-transparent to-[#f5f5f0]" />
 
         {/* Content */}
-        <div className="relative z-10 w-full flex flex-col items-center px-4">
-          <h1 className="text-xl md:text-2xl tracking-[0.3em] text-[#4a4a4a] font-light mb-4">
-            WEDDING DAY
-          </h1>
-
+        <div className="relative z-10 w-full flex flex-col items-center px-4 pt-2 -mt-1 md:-mt-2">
+          <h2 className="text-2xl md:text-3xl font-script text-[#6b5a3e] mb-6 text-center">
+            Wedding day
+          </h2>
           {/* Music Controls */}
           <div className="flex items-center gap-4">
             {/* Music Note Icon */}
@@ -326,7 +328,7 @@ export default function WeddingInvitation() {
             <span className="text-6xl md:text-8xl font-names text-[#2a2a2a]">А</span>
           </motion.div>
           <motion.h2
-            className="text-3xl md:text-5xl font-names text-[#2a2a2a]"
+            className="text-4xl md:text-6xl font-names text-[#2a2a2a]"
             initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={transition}
@@ -526,7 +528,7 @@ export default function WeddingInvitation() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label className="block text-[#5a5a5a] text-sm mb-2">
-                    Аты-жөніңіз (жұбайыңызбен бірге келетін болсаңыз екі есімді де көрсетуіңізді сұраймыз)
+                    Аты-жөніңіз:
                   </label>
                   <input
                     type="text"
@@ -544,12 +546,24 @@ export default function WeddingInvitation() {
                       <input
                         type="radio"
                         name="attendance"
-                        value="yes"
-                        checked={formData.attendance === "yes"}
+                        value="yes_single"
+                        checked={formData.attendance === "yes_single"}
+                        onChange={(e) => setFormData({ ...formData, attendance: e.target.value })}
+                        className="w-5 h-5 text-[#6b5a3e] border-[#d4d4d4] focus:ring-[#6b5a3e]"
+                        required
+                      />
+                      <span className="text-[#6b5a3e]">Иә, қуана-қуана келемін</span>
+                    </label>
+                    <label className="flex items-center gap-3 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="attendance"
+                        value="yes_couple"
+                        checked={formData.attendance === "yes_couple"}
                         onChange={(e) => setFormData({ ...formData, attendance: e.target.value })}
                         className="w-5 h-5 text-[#6b5a3e] border-[#d4d4d4] focus:ring-[#6b5a3e]"
                       />
-                      <span className="text-[#6b5a3e]">Иә, келемін</span>
+                      <span className="text-[#6b5a3e]">Жұбайыммен бірге келеміз</span>
                     </label>
                     <label className="flex items-center gap-3 cursor-pointer">
                       <input
@@ -560,7 +574,7 @@ export default function WeddingInvitation() {
                         onChange={(e) => setFormData({ ...formData, attendance: e.target.value })}
                         className="w-5 h-5 text-[#6b5a3e] border-[#d4d4d4] focus:ring-[#6b5a3e]"
                       />
-                      <span className="text-[#6b5a3e]">Жоқ, өкінішке орай келе алмаймын</span>
+                      <span className="text-[#6b5a3e]">Өкінішке орай, келе алмаймын</span>
                     </label>
                   </div>
                 </div>
