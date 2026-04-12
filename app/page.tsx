@@ -341,36 +341,36 @@ export default function WeddingInvitation() {
       {/* Invitation Text Section */}
       <ScrollRevealSection className="-mt-4 pt-6 pb-10 px-4 bg-[#f5f5f0] md:-mt-6 md:pt-8">
         <div className="max-w-md mx-auto text-center">
-          <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed mb-2">Құрметті</p>
-          <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed">Ағайын-туыс,бауырлар,</p>
-          <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed">нағашы-жиен,бөлелер,</p>
-          <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed">әпке-жезделер,</p>
-          <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed">құда-жекжат,</p>
-          <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed">дос-жарандар,</p>
-          <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed">құрбы-құрдас,көршілер,</p>
-          <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed">әріптестер!</p>
+          <p className="font-couple-names text-[#5a5a5a] text-2xl md:text-3xl leading-relaxed">Құрметті</p>
+          <p className="font-couple-names text-[#5a5a5a] text-2xl md:text-3xl leading-relaxed">Ағайын-туыс,бауырлар,</p>
+          <p className="font-couple-names text-[#5a5a5a] text-2xl md:text-3xl leading-relaxed">нағашы-жиен,бөлелер,</p>
+          <p className="font-couple-names text-[#5a5a5a] text-2xl md:text-3xl leading-relaxed">әпке-жезделер,</p>
+          <p className="font-couple-names text-[#5a5a5a] text-2xl md:text-3xl leading-relaxed">құда-жекжат,</p>
+          <p className="font-couple-names text-[#5a5a5a] text-2xl md:text-3xl leading-relaxed">дос-жарандар,</p>
+          <p className="font-couple-names text-[#5a5a5a] text-2xl md:text-3xl leading-relaxed">құрбы-құрдас,көршілер,</p>
+          <p className="font-couple-names text-[#5a5a5a] text-2xl md:text-3xl leading-relaxed">әріптестер!</p>
         </div>
       </ScrollRevealSection>
 
       {/* Wedding Couple Section */}
       <ScrollRevealSection className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
         <div className="max-w-md mx-auto text-center">
-          <p className="text-[#5a5a5a] text-lg md:text-xl mb-4">Сіздерді балаларымыз</p>
+          <p className="font-couple-names text-[#5a5a5a] text-2xl md:text-3xl leading-relaxed mb-4">Сіздерді балаларымыз</p>
 
-          <h3 className="text-3xl md:text-4xl font-couple-names text-[#6b5a3e] mb-2">Жанибек</h3>
-          <p className="text-[#5a5a5a] text-lg md:text-xl mb-2">пен</p>
-          <h3 className="text-3xl md:text-4xl font-couple-names text-[#6b5a3e] mb-6">Аиданың</h3>
+          <h3 className="text-4xl md:text-5xl font-couple-names text-[#6b5a3e] mb-2">Жанибек</h3>
+          <p className="font-couple-names text-[#5a5a5a] text-2xl md:text-3xl leading-relaxed mb-2">пен</p>
+          <h3 className="text-4xl md:text-5xl font-couple-names text-[#6b5a3e] mb-6">Аиданың</h3>
 
-          <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed">
+          <p className="font-couple-names text-[#5a5a5a] text-2xl md:text-3xl leading-relaxed">
             үйлену тойына арналған
           </p>
-          <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed">
+          <p className="font-couple-names text-[#5a5a5a] text-2xl md:text-3xl leading-relaxed">
             салтанатты ақ
           </p>
-          <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed">
+          <p className="font-couple-names text-[#5a5a5a] text-2xl md:text-3xl leading-relaxed">
             дастарханымыздың қадірлі
           </p>
-          <p className="text-[#5a5a5a] text-lg md:text-xl leading-relaxed">
+          <p className="font-couple-names text-[#5a5a5a] text-2xl md:text-3xl leading-relaxed">
             қонағы болуға шақырамыз!
           </p>
         </div>
@@ -389,13 +389,13 @@ export default function WeddingInvitation() {
             <SectionOrnament variant="1" className="mb-6" />
           </motion.div>
 
-          <motion.h2 variants={staggerItem} className="text-2xl md:text-3xl text-[#5a5a5a] mb-6">
+          <motion.h2 variants={staggerItem} className="text-balance font-couple-names text-3xl leading-snug text-[#6b5a3e] md:text-4xl md:leading-normal mb-6">
             Той салтанаты:
           </motion.h2>
 
           <motion.p
             variants={staggerItem}
-            className="text-xl md:text-2xl font-script text-[#6b5a3e] mb-6 underline decoration-[#6b5a3e]"
+            className="mb-6 font-script text-2xl leading-relaxed text-[#6b5a3e] underline decoration-[#6b5a3e] md:text-3xl"
           >
             18 шілде 2026 жыл
           </motion.p>
@@ -441,7 +441,7 @@ export default function WeddingInvitation() {
             </svg>
           </motion.div>
 
-          <motion.p variants={staggerItem} className="text-lg md:text-xl text-[#5a5a5a]">
+          <motion.p variants={staggerItem} className="font-couple-names text-[#5a5a5a] text-2xl md:text-3xl leading-relaxed">
             Сағат 14:00-де басталады
           </motion.p>
         </motion.div>
@@ -450,19 +450,19 @@ export default function WeddingInvitation() {
       {/* Venue Section */}
       <ScrollRevealSection className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
         <div className="max-w-sm mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-script text-[#6b5a3e] mb-6">Мекен-жайымыз:</h2>
+          <h2 className="text-balance font-couple-names text-3xl leading-snug text-[#6b5a3e] md:text-4xl md:leading-normal mb-6">Мекен-жайымыз:</h2>
 
           <div className="border border-[#d4d4d4] rounded-lg p-6 mb-6">
-            <p className="text-[#5a5a5a] text-lg mb-4">Кішкенекөл ауылы</p>
-            <p className="text-2xl md:text-3xl font-script text-[#6b5a3e] mb-2">{'"'}{" "}Гаухартас{" "}{'"'}</p>
-            <p className="text-[#5a5a5a] text-lg">мейрамханасы</p>
+            <p className="font-couple-names text-[#5a5a5a] text-2xl md:text-3xl leading-relaxed mb-4">Кішкенекөл ауылы</p>
+            <p className="mb-2 font-script text-3xl text-[#6b5a3e] md:text-4xl">{'"'}{" "}Гаухартас{" "}{'"'}</p>
+            <p className="font-couple-names text-[#5a5a5a] text-2xl md:text-3xl leading-relaxed">мейрамханасы</p>
           </div>
 
           <motion.a
             href="https://maps.app.goo.gl/FceHneyyBDBpAeCJA"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-[#5a5040] text-white px-8 py-3 rounded-full text-lg hover:bg-[#4a4030] transition-colors font-script"
+            className="inline-block text-balance bg-[#5a5040] px-9 py-3.5 text-center text-xl leading-snug text-white transition-colors font-couple-names hover:bg-[#4a4030] md:text-2xl md:leading-normal rounded-full"
             whileHover={{ y: -4, transition }}
             whileTap={{ scale: 0.98 }}
           >
@@ -476,35 +476,35 @@ export default function WeddingInvitation() {
         <SectionOrnament variant="2" className="mb-6" />
 
         <div className="max-w-sm mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-script text-[#6b5a3e] mb-6">Той иелері:</h2>
-          <p className="text-xl md:text-2xl text-[#5a5a5a]">Сабыржан-Шолпан</p>
+          <h2 className="text-balance font-couple-names text-3xl leading-snug text-[#6b5a3e] md:text-4xl md:leading-normal mb-6">Той иелері:</h2>
+          <p className="font-couple-names text-[#5a5a5a] text-2xl md:text-3xl leading-relaxed">Сабыржан-Шолпан</p>
         </div>
       </ScrollRevealSection>
 
       {/* Countdown Section */}
       <ScrollRevealSection className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
         <div className="max-w-md mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl text-[#5a5a5a] mb-6">Той салтанатына дейін:</h2>
+          <h2 className="text-balance font-couple-names text-3xl leading-snug text-[#6b5a3e] md:text-4xl md:leading-normal mb-6">Той салтанатына дейін:</h2>
 
           <div className="flex justify-center items-center gap-2 md:gap-4 mb-8">
             <div className="text-center">
-              <span className="text-4xl md:text-6xl font-light text-[#4a4a4a]">{isMounted ? timeLeft.days : "-"}</span>
-              <p className="text-sm md:text-base text-[#5a5a5a]">күн</p>
+              <span className="text-4xl md:text-6xl font-light text-[#5a5a5a]">{isMounted ? timeLeft.days : "-"}</span>
+              <p className="font-couple-names text-base md:text-lg leading-relaxed text-[#5a5a5a]">күн</p>
             </div>
-            <span className="text-4xl md:text-6xl text-[#4a4a4a]">:</span>
+            <span className="text-4xl md:text-6xl text-[#5a5a5a]">:</span>
             <div className="text-center">
-              <span className="text-4xl md:text-6xl font-light text-[#4a4a4a]">{isMounted ? timeLeft.hours : "-"}</span>
-              <p className="text-sm md:text-base text-[#5a5a5a]">сағат</p>
+              <span className="text-4xl md:text-6xl font-light text-[#5a5a5a]">{isMounted ? timeLeft.hours : "-"}</span>
+              <p className="font-couple-names text-base md:text-lg leading-relaxed text-[#5a5a5a]">сағат</p>
             </div>
-            <span className="text-4xl md:text-6xl text-[#4a4a4a]">:</span>
+            <span className="text-4xl md:text-6xl text-[#5a5a5a]">:</span>
             <div className="text-center">
-              <span className="text-4xl md:text-6xl font-light text-[#4a4a4a]">{isMounted ? timeLeft.minutes : "-"}</span>
-              <p className="text-sm md:text-base text-[#5a5a5a]">минут</p>
+              <span className="text-4xl md:text-6xl font-light text-[#5a5a5a]">{isMounted ? timeLeft.minutes : "-"}</span>
+              <p className="font-couple-names text-base md:text-lg leading-relaxed text-[#5a5a5a]">минут</p>
             </div>
-            <span className="text-4xl md:text-6xl text-[#4a4a4a]">:</span>
+            <span className="text-4xl md:text-6xl text-[#5a5a5a]">:</span>
             <div className="text-center">
-              <span className="text-4xl md:text-6xl font-light text-[#4a4a4a]">{isMounted ? timeLeft.seconds : "-"}</span>
-              <p className="text-sm md:text-base text-[#5a5a5a]">секунд</p>
+              <span className="text-4xl md:text-6xl font-light text-[#5a5a5a]">{isMounted ? timeLeft.seconds : "-"}</span>
+              <p className="font-couple-names text-base md:text-lg leading-relaxed text-[#5a5a5a]">секунд</p>
             </div>
           </div>
         </div>
@@ -513,8 +513,8 @@ export default function WeddingInvitation() {
       {/* RSVP Section */}
       <ScrollRevealSection className="py-10 px-4 bg-[#f5f5f0] border-t border-[#d4d4d4]">
         <div className="max-w-md mx-auto">
-          <h2 className="text-xl md:text-2xl text-[#5a5a5a] text-center mb-2">Тойға келуіңізді</h2>
-          <h2 className="text-xl md:text-2xl text-[#5a5a5a] text-center mb-8">растауыңызды сұраймыз</h2>
+          <h2 className="text-balance font-couple-names text-3xl leading-snug text-[#6b5a3e] md:text-4xl md:leading-normal text-center mb-2">Тойға келуіңізді</h2>
+          <h2 className="text-balance font-couple-names text-3xl leading-snug text-[#6b5a3e] md:text-4xl md:leading-normal text-center mb-8">растауыңызды сұраймыз</h2>
 
           {submitted ? (
             <div className="text-center py-8">
@@ -527,20 +527,20 @@ export default function WeddingInvitation() {
             >
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-[#5a5a5a] text-sm mb-2">
+                  <label className="block font-couple-names text-lg text-[#5a5a5a] mb-2">
                     Аты-жөніңіз:
                   </label>
                   <input
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full border border-[#d4d4d4] rounded-md px-4 py-3 text-[#4a4a4a] focus:outline-none focus:border-[#6b5a3e]"
+                    className="w-full rounded-md border border-[#d4d4d4] px-4 py-3 font-couple-names text-lg text-[#4a4a4a] focus:border-[#6b5a3e] focus:outline-none"
                     required
                   />
                 </div>
 
                 <div>
-                  <p className="text-[#5a5a5a] text-sm mb-3">Тойға келесіз бе?</p>
+                  <p className="mb-3 font-couple-names text-lg text-[#5a5a5a]">Тойға келесіз бе?</p>
                   <div className="space-y-3">
                     <label className="flex items-center gap-3 cursor-pointer">
                       <input
@@ -552,7 +552,7 @@ export default function WeddingInvitation() {
                         className="w-5 h-5 text-[#6b5a3e] border-[#d4d4d4] focus:ring-[#6b5a3e]"
                         required
                       />
-                      <span className="text-[#6b5a3e]">Иә, қуана-қуана келемін</span>
+                      <span className="font-couple-names text-lg text-[#6b5a3e]">Иә, қуана-қуана келемін</span>
                     </label>
                     <label className="flex items-center gap-3 cursor-pointer">
                       <input
@@ -563,7 +563,7 @@ export default function WeddingInvitation() {
                         onChange={(e) => setFormData({ ...formData, attendance: e.target.value })}
                         className="w-5 h-5 text-[#6b5a3e] border-[#d4d4d4] focus:ring-[#6b5a3e]"
                       />
-                      <span className="text-[#6b5a3e]">Жұбайыммен бірге келеміз</span>
+                      <span className="font-couple-names text-lg text-[#6b5a3e]">Жұбайыммен бірге келеміз</span>
                     </label>
                     <label className="flex items-center gap-3 cursor-pointer">
                       <input
@@ -574,7 +574,7 @@ export default function WeddingInvitation() {
                         onChange={(e) => setFormData({ ...formData, attendance: e.target.value })}
                         className="w-5 h-5 text-[#6b5a3e] border-[#d4d4d4] focus:ring-[#6b5a3e]"
                       />
-                      <span className="text-[#6b5a3e]">Өкінішке орай, келе алмаймын</span>
+                      <span className="font-couple-names text-lg text-[#6b5a3e]">Өкінішке орай, келе алмаймын</span>
                     </label>
                   </div>
                 </div>
@@ -583,7 +583,7 @@ export default function WeddingInvitation() {
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-[#5a5040] text-white px-12 py-3 rounded-md text-lg hover:bg-[#4a4030] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="inline-block text-balance bg-[#5a5040] px-9 py-3.5 text-center text-xl leading-snug text-white transition-colors font-couple-names hover:bg-[#4a4030] md:text-2xl md:leading-normal rounded-full disabled:cursor-not-allowed disabled:opacity-50"
                     whileHover={!isSubmitting ? { y: -4, transition } : undefined}
                     whileTap={!isSubmitting ? { scale: 0.98 } : undefined}
                   >
@@ -596,22 +596,18 @@ export default function WeddingInvitation() {
         </div>
       </ScrollRevealSection>
 
-      {/* Заключительная фраза */}
-      <ScrollRevealSection className="border-t border-[#d4d4d4] bg-[#f5f5f0] py-14 px-6">
-        <div className="mx-auto max-w-xl text-center">
-          <p className="text-balance font-couple-names text-2xl leading-snug text-[#6b5a3e] md:text-3xl md:leading-normal">
+      {/* Заключительная фраза + орнамент: одинаковый зазор от верхней границы до текста и от текста до орнамента */}
+      <ScrollRevealSection className="border-t border-[#d4d4d4] bg-[#f5f5f0] px-6 pb-10">
+        <div className="mx-auto flex max-w-xl flex-col gap-8 pt-8">
+          <p className="text-balance text-center font-couple-names text-3xl leading-snug text-[#6b5a3e] md:text-4xl md:leading-normal">
             Келіңіздер, тойымыздың қадірлі қонағы болыңыздар!
           </p>
+          <SectionOrnament variant="1" flipped />
         </div>
       </ScrollRevealSection>
 
-      {/* Footer: тот же орнамент, перевёрнутый */}
-      <ScrollRevealSection className="py-8 bg-[#f5f5f0]">
-        <SectionOrnament variant="1" flipped />
-      </ScrollRevealSection>
-
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Tangerine:wght@400;700&family=Marck+Script&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&family=Cormorant:ital,wght@0,300..700;1,300..700&family=Tangerine:wght@400;700&family=Marck+Script&display=swap');
 
         .font-script {
           font-family: 'Great Vibes', cursive;
@@ -624,7 +620,7 @@ export default function WeddingInvitation() {
         .font-couple-names {
           font-family: 'Cormorant', serif;
           font-style: italic;
-          font-weight: 500;
+          font-weight: 600;
         }
 
         body {
